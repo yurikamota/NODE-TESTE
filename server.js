@@ -16,15 +16,23 @@ const server = fastify();
 
 // Route Parameter
 
-server.get('/', () => {
+server.post('/videos', () => {
     return 'Hello World!';
 });
 
-server.get('/hello', () => {
+server.get('/videos', () => {
     return 'Hello Yurika';
 });
 
-server.get('/node', () => {
+server.put('/videos/:id', () => {
+    return 'Hello Node.js';
+});
+
+server.put('/videos/:id', () => {
+    return 'Hello Node.js';
+});
+
+server.delete('/videos/:id', () => {
     return 'Hello Node.js';
 });
 
