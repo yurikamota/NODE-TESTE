@@ -12,20 +12,31 @@ import { DatabaseMemory } from './database-memory.js';
 
 const server = fastify();
 
+const database = new DatabaseMemory();
+
 // GET, POST, PUT, PATCH, DELETE
 
 // Route Parameter
 
-server.post('/videos', () => {
-    return 'Hello World!';
+// Request Body
+
+server.post('/videos', (request, reply) => {
+    const { title, description, duration } = request.body;
+
+
+    database.create({
+        title,
+        description,
+        duration,
+    });
+
+    return reply.status(201).send();
 });
 
-server.get('/videos', () => {
-    return 'Hello Yurika';
-});
+server.get('/videos', (request, reply) => {
+    const videos = database.list();
 
-server.put('/videos/:id', () => {
-    return 'Hello Node.js';
+    return videos;
 });
 
 server.put('/videos/:id', () => {
